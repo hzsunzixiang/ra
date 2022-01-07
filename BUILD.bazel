@@ -1,6 +1,7 @@
 load("@rules_erlang//:erlang_app.bzl", "erlang_app")
 load("@rules_erlang//:xref.bzl", "xref")
-load("@rules_erlang//:dialyze.bzl", "DEFAULT_PLT_APPS", "dialyze", "plt")
+load("@rules_erlang//:plt.bzl", "DEFAULT_PLT_APPS", "plt")
+load("@rules_erlang//:dialyze.bzl", "dialyze")
 load(":ra.bzl", "ra_suites")
 
 NAME = "ra"
