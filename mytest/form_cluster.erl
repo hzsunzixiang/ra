@@ -1,8 +1,8 @@
 
 %%%%%%%%%%%%%%%
-rebar3 shell --name ra1@centos7-dev
-rebar3 shell --name ra2@centos7-dev
-rebar3 shell --name ra3@centos7-dev
+rebar3 shell --sname ra1@centos7-dev
+rebar3 shell --sname ra2@centos7-dev
+rebar3 shell --sname ra3@centos7-dev
 
 ErlangNodes = ['ra1@centos7-dev', 'ra2@centos7-dev', 'ra3@centos7-dev'].
 [io:format("Attempting to communicate with node ~s, response: ~s~n", [N, net_adm:ping(N)]) || N <- ErlangNodes].
@@ -17,11 +17,11 @@ Machine = {simple, fun erlang:'+'/2, 0}.
 
 %%%%%%%%%%%%%%%%%%%%%%%
 # replace centos7-dev with your actual hostname
-rebar3 shell --name ra1@centos7-dev
+rebar3 shell --sname ra1@centos7-dev
 # replace centos7-dev with your actual hostname
-rebar3 shell --name ra2@centos7-dev
+rebar3 shell --sname ra2@centos7-dev
 # replace centos7-dev with your actual hostname
-rebar3 shell --name ra3@centos7-dev
+rebar3 shell --sname ra3@centos7-dev
 
 
 %% All servers in a Ra cluster are named processes on Erlang nodes.
