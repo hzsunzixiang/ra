@@ -1,4 +1,12 @@
 
+# replace centos7-dev with your actual hostname
+rebar3 shell --name ra1@centos7-dev
+# replace centos7-dev with your actual hostname
+rebar3 shell --name ra2@centos7-dev
+# replace centos7-dev with your actual hostname
+rebar3 shell --name ra3@centos7-dev
+
+
 %% All servers in a Ra cluster are named processes on Erlang nodes.
 %% The Erlang nodes must have distribution enabled and be able to
 %% communicate with each other.
@@ -6,7 +14,7 @@
 
 %% These Erlang nodes will host Ra nodes. They are the "seed" and assumed to
 %% be running or come online shortly after Ra cluster formation is started with ra:start_cluster/4.
-ErlangNodes = ['ra1@hostname.local', 'ra2@hostname.local', 'ra3@hostname.local'],
+ErlangNodes = ['ra1@centos7-dev', 'ra2@centos7-dev', 'ra3@centos7-dev'],
 
 %% This will check for Erlang distribution connectivity. If Erlang nodes
 %% cannot communicate with each other, Ra nodes would not be able to cluster or communicate
