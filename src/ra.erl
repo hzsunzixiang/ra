@@ -131,7 +131,7 @@ start(Params) when is_list(Params) ->
     _ = application:load(ra),
     [ok = application:set_env(ra, Param, Value)
      || {Param, Value} <- Params],
-    Res = application:ensure_all_started(ra),
+    Res = application:ensure_all_started(ra),  % 在这里启动所有依赖，包括ra本身，调用入口 ra_app的start
     _ = ra_system:start_default(),
     Res.
 
