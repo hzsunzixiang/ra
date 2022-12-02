@@ -1,4 +1,21 @@
 
+%%%%%%%%%%%%%%%
+rebar3 shell --name ra1@centos7-dev
+rebar3 shell --name ra2@centos7-dev
+rebar3 shell --name ra3@centos7-dev
+
+ErlangNodes = ['ra1@centos7-dev', 'ra2@centos7-dev', 'ra3@centos7-dev'].
+[io:format("Attempting to communicate with node ~s, response: ~s~n", [N, net_adm:ping(N)]) || N <- ErlangNodes].
+[rpc:call(N, ra, start, []) || N <- ErlangNodes].
+ServerIds = [{quick_start, N} || N <- ErlangNodes].
+ClusterName = quick_start.
+Machine = {simple, fun erlang:'+'/2, 0}.
+{ok, ServersStarted, _ServersNotStarted} = ra:start_cluster(default, ClusterName, Machine, ServerIds).
+{ok, StateMachineResult, LeaderId} = ra:process_command(hd(ServersStarted), 5).
+{ok, 12, LeaderId1} = ra:process_command(LeaderId, 7).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%
 # replace centos7-dev with your actual hostname
 rebar3 shell --name ra1@centos7-dev
 # replace centos7-dev with your actual hostname
@@ -47,3 +64,7 @@ Machine = {simple, fun erlang:'+'/2, 0},
 
 %% Use the leader id from the last command result for the next one
 {ok, 12, LeaderId1} = ra:process_command(LeaderId, 7).
+
+
+
+
