@@ -1,0 +1,16 @@
+#.PHONY:clean all
+.SUFFIXES: .erl .beam
+
+
+.erl.beam:
+	erlc -W -I ../include $<
+
+#MODS := $(patsubst %.erl,%, $(wildcard *.erl))
+#
+RUN_BIN=raga_SUITE raga_node_SUITE
+#all:${MODS:%=%.beam} 
+all:${RUN_BIN}
+	erlc -I ../include $<.erl
+
+clean:
+	rm -f *.beam
